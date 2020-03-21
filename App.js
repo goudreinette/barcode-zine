@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
-import SvgUri from "expo-svg-uri";
+import { WebView } from 'react-native-webview';
+
+const toneHtml = require('./assets/tone.html');
+
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -30,19 +33,19 @@ export default function App() {
        <Camera 
           style={{ flex: 1 }} 
           type={type}
-          autoFocus={Camera.Constants.AutoFocus}
           onBarCodeScanned={code => {
             setBarcodeData(code.data)
             setBarcodeType(code.type)
           }}
         >
-          <View style={{alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-            <SvgUri
-              width="200"
-              height="200"
-              svgXmlData={barcodeData}
-            />
-          </View>
+
+          <WebView 
+            source={toneHtml}
+            onMessage={event => {
+              alert(event.nativeEvent.data);
+            }}
+          ></WebView>
+          
           
           <View style={{height: 120, width: '100%', position: "absolute", bottom: 0, padding: 20, backgroundColor: 'white'}}>
             <Text style={{fontWeight: 'bold', fontSize: 20, paddingBottom: 5, maxHeight: 75}}>{barcodeData}</Text>
