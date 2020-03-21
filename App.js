@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
 import { WebView } from 'react-native-webview';
+import applyCode from './codes'
 
 const toneHtml = require('./assets/tone.html');
 
@@ -35,21 +36,11 @@ export default function App() {
        <Camera 
           style={{ flex: 1 }} 
           type={type}
+          // autoFocus={Camera.Auto}
           onBarCodeScanned={code => {
             setBarcodeData(code.data)
             setBarcodeType(code.type)
-
-            if (code.data.includes("play")) {
-              webRef.injectJavaScript(`
-                osc.amp(0.5)
-              `)
-            }
-
-            if (code.data.includes("stop")) {
-              webRef.injectJavaScript(`
-                osc.amp(0)
-              `)
-            } 
+            applyCode(webRef, code.data.toLowerCase())
           }}
         >
 
