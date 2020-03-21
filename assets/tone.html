@@ -1,11 +1,23 @@
 <style>
     body {
-        background-color: red;
+        /* background-color: red; */
     }
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+
 <script>
-    setTimeout(function () {
-      window.ReactNativeWebView.postMessage("Hello!")
-    }, 2000)
-  </script>
+
+    function setup() {
+        createCanvas(100, 100);
+        osc = new p5.Oscillator('sine');
+        osc.freq(300, 0.1);
+        osc.amp(0, 0.1);
+        osc.start()
+    }
+
+    // setTimeout(function () {
+    //   window.ReactNativeWebView.postMessage("Hello!")
+    // }, 2000)
+</script>

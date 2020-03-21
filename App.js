@@ -12,6 +12,8 @@ export default function App() {
 
   const [barcodeData, setBarcodeData] = useState("")
   const [barcodeType, setBarcodeType] = useState("")
+
+  let webRef = null
   
   useEffect(() => {
     (async () => {
@@ -36,10 +38,24 @@ export default function App() {
           onBarCodeScanned={code => {
             setBarcodeData(code.data)
             setBarcodeType(code.type)
+
+            if (code.data.includes("play")) {
+              webRef.injectJavaScript(`
+                osc.amp(0.5)
+              `)
+            }
+
+            if (code.data.includes("stop")) {
+              webRef.injectJavaScript(`
+                osc.amp(0)
+              `)
+            } 
           }}
         >
 
           <WebView 
+            style={{opacity: 0}}
+            ref={r => webRef = r}
             source={toneHtml}
             onMessage={event => {
               alert(event.nativeEvent.data);
