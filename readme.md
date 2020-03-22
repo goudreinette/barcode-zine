@@ -1,6 +1,7 @@
-## Demo
+## Demo video
 
 <a href="https://twitter.com/reinvanderwoerd/status/1241772279790473217?s=20"><img src="./Demo.png" width = 300 /></a>
+
 
 
 ## Try it
