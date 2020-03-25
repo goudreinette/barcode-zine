@@ -41,6 +41,7 @@ export default function App() {
             setBarcodeData(code.data)
             setBarcodeType(code.type)
             applyCode(webRef, code.data.toLowerCase())
+            
           }}
         >
 
@@ -53,7 +54,7 @@ export default function App() {
             }}
           ></WebView>
           
-          
+
           <View style={{height: 120, width: '100%', position: "absolute", bottom: 0, padding: 20, backgroundColor: 'white'}}>
             <Text style={{fontWeight: 'bold', fontSize: 20, paddingBottom: 5, maxHeight: 75}}>{barcodeData}</Text>
             <Text style={{opacity: 0.5}}>{barcodeType}</Text>
