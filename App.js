@@ -14,6 +14,11 @@ export default function App() {
   const [barcodeData, setBarcodeData] = useState("")
   const [barcodeType, setBarcodeType] = useState("")
 
+  // Oscillator state
+  // const [oscType, ]
+
+
+
   let webRef = null
   
   useEffect(() => {
@@ -41,7 +46,6 @@ export default function App() {
             setBarcodeData(code.data)
             setBarcodeType(code.type)
             applyCode(webRef, code.data.toLowerCase())
-            
           }}
         >
 

@@ -37,8 +37,9 @@ export default function applyCode(webRef, codeData) {
 
     // Play a note
     if (command == "n") {
+        let sharpCorrected = param.replace('S', '#')
         webRef.injectJavaScript(`
-            synth.triggerAttackRelease('${param}', '4n')
+            synth.triggerAttackRelease('${sharpCorrected}', '4n')
         `)
     }
 
